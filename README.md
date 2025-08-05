@@ -19,8 +19,6 @@ python-test/
 ├── requirements.txt # Project dependencies
 └── README.md # Project documentation
 
-
-
 ---
 
 ## Requirements
@@ -46,3 +44,22 @@ python-test/
 3. Install dependencies:
     pip install -r requirements.txt
 
+
+## Goals
+1. Build a func that loads the raw sales data from a CSV file
+2. Apply necessary data cleaning and formatting:
+    Handle missing values.
+    Standardize text and date formats:
+        1. Remove spaces at the beginning and end (strip)
+        2. Make everything lowercase (or uppercase, as appropriate)
+        3. Remove unwanted or special characters.
+
+    Compute derived metrics like revenue. (price*amount)
+
+3. Generate summarized outputs such as:
+    Cleaned full dataset   
+    Revenue by product category
+    Product by category
+    Top 10 best-selling products
+
+4. Save all outputs in a data/processed/
