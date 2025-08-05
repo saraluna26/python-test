@@ -4,24 +4,26 @@ from processing import sales_utils
 from pandas import DataFrame
 
 def test_remove_null():
-    # input_df=sales_utils.load_data("/Users/sarasolis/python-test/src/data/raw/sales_data.csv")
-    # output_df=input_df 
-    # input_df.isnull
-    # output_df
+    input_df=sales_utils.load_data("/Users/sarasolis/python-test/src/data/raw/sales_data.csv")
+    input_nulls = input_df.isnull().values.any()
 
-    # assert 
-    pass
+    output_df = sales_processing.clean_null_values(input_df)
+    output_nulls = input_df.isnull().values.any()
+    print(input_nulls)
+
+    assert input_nulls != output_nulls 
+  
 
 
 def test_cast_typer():
     schema = {
-        'order_id': 'int64',
-        'customer_id': 'int64',     
+        'order_id': 'Int64',
+        'customer_id': 'Int64',     
         'date': 'string',
         'product': 'string',          
         'category': 'string',
         'price': 'string',
-        'quantity': 'int64',
+        'quantity': 'Int64',
         'store': 'string'
     }
 
@@ -34,13 +36,13 @@ def test_cast_typer():
  
 def test_cast_date():
     schema = {
-        'order_id': 'int64',
-        'customer_id': 'int64',     
+        'order_id': 'Int64',
+        'customer_id': 'Int64',     
         'date': 'string',
         'product': 'string',          
         'category': 'string',
         'price': 'string',
-        'quantity': 'int64',
+        'quantity': 'Int64',
         'store': 'string'
     }
     input_df=sales_utils.load_data("/Users/sarasolis/python-test/src/data/raw/sales_data.csv")

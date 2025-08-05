@@ -2,9 +2,15 @@ import pandas as pd
 from pandas import DataFrame
 
 
-def null_values(df:DataFrame) -> DataFrame:
-    pass
-# fillna ()
+def clean_null_values(df:DataFrame) -> DataFrame:
+    for col in df.columns:
+        if df[col].dtype in ['string', 'object']:
+            df[col] = df[col].fillna('NA')
+        elif df[col].dtype in ['Int64', 'float']:
+            df[col] = df[col].fillna(0)
+
+    print(df)
+    return df
 
 def group_by_customer(df:DataFrame, customer_id: int) -> DataFrame: 
     pass
