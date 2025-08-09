@@ -5,7 +5,7 @@ def read_order_book(filename:str) -> dict:
     try:
         with open(filename, "r") as f:
             return json.load(f)
-    except FileNotFound:
+    except FileNotFoundError:
         print("File not found") 
         return {}
     except json.JSONDecodeError:

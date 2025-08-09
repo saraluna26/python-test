@@ -1,6 +1,6 @@
 from sales_processing import sales_processing 
 from sales_processing import sales_utils
-from api_client import *
+from api_connection import *
 from order_book_processing import *
 
 #read data
@@ -9,22 +9,24 @@ from order_book_processing import *
 
 #write data
 
-
 if __name__== "__main__":
-    symbol = input("Enter trading pair (e.g., BTCUSDT): ").upper()
-    limit = input("Enter limit (default 5): ")
-    try:
-        limit = int(limit)
-    except ValueError:
-        limit = 5
+    # symbol = input("Enter trading pair (e.g., BTCUSDT): ").upper()
+    # limit = input("Enter limit (default 5): ")
+    # try:
+    #     limit = int(limit)
+    # except ValueError:
+    #     limit = 5
 
-    try:
-        symbol = str(symbol)
-    except ValueError:
-        symbol = "BTCUSDT"
+    # try:
+    #     symbol = str(symbol)
+    # except ValueError:
+    #     symbol = "BTCUSDT"
+
+    limit = 5
+    symbol = "BTCUSDT"
 
     data = fetch_order_book(symbol, limit)
-    order_book = read_order_book("order_book.json")
+    order_book = read_order_book("data/raw/order_book.json")
     print(f"Spread: {calculate_spread(order_book)}")
     print(f"Bid volume: {total_volumen(order_book, 'bids')}")
     print(f"Ask volume: {total_volumen(order_book, 'asks')}")

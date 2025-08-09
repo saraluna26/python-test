@@ -3,7 +3,7 @@ import json
 
 #__all__= ['fetch_order_book']  # imports control
 
-def fetch_order_book(symbol: str, limit: int = 5, filename: str = "order_book.json"):
+def fetch_order_book(symbol: str, limit: int = 5, filename: str = "data/raw/order_book.json"):
     """Fetches order book from Binance API and saves to file."""
     url = "https://api.binance.com/api/v3/depth"
     params = {"symbol": symbol, "limit": limit}
@@ -13,8 +13,10 @@ def fetch_order_book(symbol: str, limit: int = 5, filename: str = "order_book.js
         data = r.json()
         with open(filename, "w") as f:
             json.dump(data, f)
-        print(f"Order book saved to /data/raw/{filename}")
+        print(f"Order book saved to {filename}")
     except requests.RequestException as e:
         print(f"Error fetching data: {e}")
+
+#def 
 
 
