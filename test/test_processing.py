@@ -19,7 +19,7 @@ def test_cast_typer():
     schema = {
         'order_id': 'Int64',
         'customer_id': 'Int64',     
-        'date': 'string',
+        'date': 'datetime64[ns]',
         'product': 'string',          
         'category': 'string',
         'price': 'string',
@@ -53,3 +53,24 @@ def test_cast_date():
 
     assert input_df['date'].dtypes !=  output_df['date'].dtypes
 
+
+def test_cast_dicc():
+    input_df=sales_utils.load_data("/Users/sarasolis/python-test/src/data/raw/sales_data.csv")
+    schema = {
+        'order_id': 'Int64',
+        'customer_id': 'Int64',     
+        'date': 'string',
+        'product': 'string',          
+        'category': 'string',
+        'price': 'string',
+        'quantity': 'Int64',
+        'store': 'string'
+    }
+
+    print(input_df.dtypes)
+    output_df = sales_processing.cast_dicc(input_df, schema)
+    same_schema = input_df.dtypes.equals(output_df.dtypes) #why equal if not 
+
+    print(output_df.dtypes)
+
+    assert False==same_schema

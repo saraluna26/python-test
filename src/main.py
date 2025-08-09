@@ -2,6 +2,7 @@ from sales_processing import sales_processing
 from sales_processing import sales_utils
 from api_connection import *
 from order_book_processing import *
+from trades_processing import *
 
 #read data
 
@@ -25,15 +26,26 @@ if __name__== "__main__":
     limit = 5
     symbol = "BTCUSDT"
 
-    data = fetch_order_book(symbol, limit)
+    #FETCH ORDER BOOK
+    # data = fetch_order_book(symbol, limit)
     order_book = read_order_book("data/raw/order_book.json")
-    print(f"Spread: {calculate_spread(order_book)}")
-    print(f"Bid volume: {total_volumen(order_book, 'bids')}")
-    print(f"Ask volume: {total_volumen(order_book, 'asks')}")
+    print(type(order_book))
+    # print(f"Spread: {calculate_spread(order_book)}")
+    # print(f"Bid volume: {total_volumen(order_book, 'bids')}")
+    # print(f"Ask volume: {total_volumen(order_book, 'asks')}")
 
-    print("Spread in order_book: " + str(calculate_spread(order_book)))
-    print("total volumne for asks is: " + str(total_volumen(order_book, "asks")))
-    print("precio promedio ponderado: " + str(weighted_average_price(order_book, "asks")))
-    print("Filter by min quantity: " + str(filter_orders_by_min_quantity(order_book, "asks", 116676.91000000)))
-    print("Count orders between min and max quantity: " + str(count_orders_by_min_quantity(order_book, "asks", 116676.91000000,116677.76000000)))
-    print("Sort orders based inquantity: " + str(sort_orders_by_quantity(order_book, "asks")))
+    # print("Spread in order_book: " + str(calculate_spread(order_book)))
+    # print("total volumne for asks is: " + str(total_volumen(order_book, "asks")))
+    # print("precio promedio ponderado: " + str(weighted_average_price(order_book, "asks")))
+    # print("Filter by min quantity: " + str(filter_orders_by_min_quantity(order_book, "asks", 116676.91000000)))
+    # print("Count orders between min and max quantity: " + str(count_orders_by_min_quantity(order_book, "asks", 116676.91000000,116677.76000000)))
+    # print("Sort orders based inquantity: " + str(sort_orders_by_quantity(order_book, "asks")))
+
+    fromId = 5142854243
+    data_historical = fetch_historical_trades(symbol, limit)
+
+    historical_trades_lst = get_historical_trades("data/raw/historical_trades.json")
+
+    print(type(historical_trades_lst))
+
+    cast_file = cast_trades(historical_trades_lst)
