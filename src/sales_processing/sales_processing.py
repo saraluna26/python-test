@@ -24,6 +24,12 @@ def normalize_string_cols(df:DataFrame) -> DataFrame:
 def cast_schema(df:DataFrame, schema) -> DataFrame:
     return df.astype(schema)
 
+def cast_dicc(df:DataFrame, schema) -> DataFrame:
+    for key, value in schema.items():
+        print(f"KEY : {key} VALUE: {value}")
+        df[key] =  df[key].astype(value)
+    return df
+
 def cast_date(df:DataFrame) -> DataFrame:
     df['date'] = pd.to_datetime(df['date'], errors='coerce')
     return df
